@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.3/axios.min.js" integrity="sha512-wS6VWtjvRcylhyoArkahZUkzZFeKB7ch/MHukprGSh1XIidNvHG1rxPhyFnL73M0FC1YXPIXLRDAoOyRJNni/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-
-<body>
-  <div id="app">1253</div>
-  <div id="g_id_onload"
+<div id="g_id_onload"
      data-client_id="251094100529-p93be008heoaje88d66c1vvi12fab0dq.apps.googleusercontent.com"
-     data-context="signin"
+     data-context="use"
      data-ux_mode="popup"
-     data-login_uri="https://popovdev-psychic-goggles-p9g7v9q79v29rv7-5173.preview.app.github.dev/"
-     data-itp_support="true">
+     data-callback="login_S"
+     data-auto_prompt="false">
 </div>
 
 <div class="g_id_signin"
      data-type="standard"
-     data-shape="pill"
+     data-shape="rectangular"
      data-theme="outline"
-     data-text="signin"
+     data-text="continue_with"
      data-size="large"
      data-logo_alignment="left">
 </div>
-  <script type="module" src="/main.js"></script>
 </body>
-
+<script>
+    function login_S(response) {
+        const credential = response.credential;
+        axios.post('/login', {
+            credential: credential
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+</script>
 </html>

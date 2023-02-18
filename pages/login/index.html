@@ -28,7 +28,7 @@
 <script>
     function login_S(response) {
         const credential = response.credential;
-        axios.post('/login', {
+           axios.post('/user/login', {
             credential: credential
         }).then(function (response) {
             console.log(response);
